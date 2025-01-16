@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35514.174 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstructionCostCalculation", "ConstructionCostCalculation\ConstructionCostCalculation.csproj", "{D7B75007-3CE2-431D-9DA8-2187A4BECE6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstructioncostcalculationDAL", "ConstructioncostcalculationDAL\ConstructioncostcalculationDAL.csproj", "{51076B14-BE10-4B4F-BB7E-FA899BE97B67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstructioncostcalculationBLL", "ConstructioncostcalculationBLL\ConstructioncostcalculationBLL.csproj", "{0CBD8E12-99E5-464D-A453-68CDE38AD897}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7B75007-3CE2-431D-9DA8-2187A4BECE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B75007-3CE2-431D-9DA8-2187A4BECE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B75007-3CE2-431D-9DA8-2187A4BECE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B75007-3CE2-431D-9DA8-2187A4BECE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51076B14-BE10-4B4F-BB7E-FA899BE97B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51076B14-BE10-4B4F-BB7E-FA899BE97B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51076B14-BE10-4B4F-BB7E-FA899BE97B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51076B14-BE10-4B4F-BB7E-FA899BE97B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CBD8E12-99E5-464D-A453-68CDE38AD897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CBD8E12-99E5-464D-A453-68CDE38AD897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CBD8E12-99E5-464D-A453-68CDE38AD897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CBD8E12-99E5-464D-A453-68CDE38AD897}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
