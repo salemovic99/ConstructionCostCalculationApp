@@ -1,25 +1,25 @@
-﻿@model Currency
+﻿@model Category
 
 
 
-<div class="modal fade" id="AddCurrencyModal" tabindex="-1" aria-labelledby="AddCurrencyModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddCATModal" tabindex="-1" aria-labelledby="AddCATModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="AddCurrencyModal">اضافة عملة</h1>
+                <h1 class="modal-title fs-5" id="AddCATModalLabel">اضافة فئة</h1>
 
             </div>
             <div class="modal-body">
                 <form asp-action="Create" method="post">
                     <div class="mb-3">
-                        <label asp-for="CurrencyName" class="form-label"></label>
-                        <input type="text" asp-for="CurrencyName" class="form-control" />
-                        <span asp-validation-for="CurrencyName" class="text-danger"></span>
+                        <label asp-for="CategoryName" class="form-label"></label>
+                        <input type="text" asp-for="CategoryName" class="form-control" />
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
                     </div>
 
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">الغاء</button>
+                        <button type="button"  class="btn btn-outline-info" data-bs-dismiss="modal">الغاء</button>
                         <button type="submit" class="btn btn-dark">اضافة</button>
                     </div>
                 </form>
@@ -33,4 +33,3 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-

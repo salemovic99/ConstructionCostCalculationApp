@@ -1,0 +1,133 @@
+﻿@model List<Category>
+
+
+
+
+<div class="row d-flex justify-content-between align-items-center">
+    <div class="col-xl-2">
+        <h3>الفئات (@Model.Count())</h3>
+        <p>إدارة الفئات</p>
+    </div>
+    <div class="col-xl-2">
+
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#AddCATModal">
+            <i class="ri ri-add-line"></i>  إضافة جديد
+        </button>
+    </div>
+</div>
+
+@await Html.PartialAsync("_categoryCreatePartial", new Category())
+
+@if (Model.Count() < 1)
+{
+    <div class="text-center alert alert-info ">لا يوجد بيانات حاليا!</div>
+}
+else
+{
+
+    <table class="table table-hover ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>اسم الفئة</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryId</td>
+                    <td>@item.CategoryName</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-outline-info">تعديل</a>
+                        <button class="delete-btn btn btn-outline-danger" data-categoryId="@item.CategoryId">حذف</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
+    
+    <script>
+
+
+        $(document).ready(function() {
+
+
+
+            $('.delete-btn').on('click', function () {
+
+                var Id = $(this).data('categoryid');
+                var btn = $(this);
+
+
+                bootbox.confirm({
+                    message: 'هل أنت متأكد أنك تريد حذف هذا العنصر؟',
+                    buttons: {
+                        confirm: {
+                            label: 'نعم',
+                            className: 'btn-dark'
+                        },
+                        cancel: {
+                            label: 'الغاء',
+                            className: 'btn-outline-info'
+                        }
+                    },
+                    centerVertical: true,
+                    callback: function (result) {
+
+                        if (result) {
+                            $.ajax({
+                                url: `/categories/delete?id=${Id}`,
+                                method: "DELETE",
+                                success: function () {
+
+                                    btn.parents('tr').fadeOut();
+
+
+                                    toastr.success("تم حذف العصنر بنجاح ")
+                                    toastr.options = {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": true,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-left",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "5000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                },
+                                error: function () {
+                                    toastr.error('فشلت عملية الحذف. الرجاء المحاولة مرة أخرى.');
+                                }
+                            });//end ajax call
+
+                        }
+                    }
+                });
+
+
+
+            });
+        });
+
+    </script>
+
+}

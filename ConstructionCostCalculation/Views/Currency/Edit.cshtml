@@ -1,24 +1,28 @@
 ﻿@model Currency
 
-<h3>تعديل عملة </h3>
-<form method="post" asp-action="Edit">
+<div class="row d-flex justify-content-center align-items-center">
+   <div class="col-lg-7 col-md-9 col-sm-11">
+        <h3>تعديل عملة </h3>
+        <form method="post" asp-action="Edit">
 
-    <div class="mb-3">
-        <label asp-for="CurrencyId" class="form-label"></label>
-        <input type="text" class="form-control" asp-for="CurrencyId" readonly />
-        <span asp-validation-for="CurrencyId" class="text-danger"></span>
-    </div>
+            <div class="mb-3">
+                <label asp-for="CurrencyId" class="form-label"></label>
+                <input type="text" class="form-control" asp-for="CurrencyId" readonly />
+                <span asp-validation-for="CurrencyId" class="text-danger"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="CurrencyName" class="form-label"></label>
-        <input type="text" class="form-control" asp-for="CurrencyName" />
-        <span asp-validation-for="CurrencyName" class="text-danger"></span>
-    </div>
-    <div>
-        <button class="btn btn-primary">حفظ</button>
-        <a class="btn btn-outline-info" asp-action="Index">الغاء</a>
-    </div>
-</form>
+            <div class="mb-3">
+                <label asp-for="CurrencyName" class="form-label"></label>
+                <input type="text" class="form-control" asp-for="CurrencyName" />
+                <span asp-validation-for="CurrencyName" class="text-danger"></span>
+            </div>
+            <div>
+                <button class="btn btn-primary">حفظ</button>
+                <a class="btn btn-outline-info" asp-action="Index">الغاء</a>
+            </div>
+        </form>
+   </div>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
