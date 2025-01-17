@@ -18,11 +18,28 @@ namespace ConstructionCostCalculation.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
         {
             try
             {
-                return View(await unitOfwork.MaterialsRepository.GetAllAsync());
+                var materials = await unitOfwork.MaterialsRepository.GetAllAsync();
+                var totalCategories = materials.Count();
+                materials = materials
+                               .Skip((page - 1) * pageSize)
+                               .Take(pageSize)
+                               .ToList();
+
+
+
+                var model = new PaginatedList<Material>
+                {
+                    Items = materials,
+                    CurrentPage = page,
+                    PageSize = pageSize,
+                    TotalItems = totalCategories
+                };
+
+                return View(model);
             }
             catch (Exception e)
             {

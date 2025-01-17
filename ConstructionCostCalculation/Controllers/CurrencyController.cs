@@ -1,4 +1,5 @@
-﻿using ConstructioncostcalculationBLL.Repositories;
+﻿using ConstructionCostCalculation.ViewModels;
+using ConstructioncostcalculationBLL.Repositories;
 using ConstructioncostcalculationDAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
@@ -15,11 +16,28 @@ namespace ConstructionCostCalculation.Controllers
             _toastNotification = toastNotification;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
         {
             try
             {
-                return View(await unitOfwork.CurrenciesRepository.GetAllAsync());
+                var currencies = await unitOfwork.CurrenciesRepository.GetAllAsync();
+                var totalCategories = currencies.Count();
+                currencies = currencies
+                               .Skip((page - 1) * pageSize)
+                               .Take(pageSize)
+                               .ToList();
+
+
+
+                var model = new PaginatedList<Currency>
+                {
+                    Items = currencies,
+                    CurrentPage = page,
+                    PageSize = pageSize,
+                    TotalItems = totalCategories
+                };
+
+                return View(model);
             }
             catch (Exception e)
             {

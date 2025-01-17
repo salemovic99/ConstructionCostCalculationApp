@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Currency>
+﻿@model PaginatedList<Currency>
 
 @{
     ViewData["Title"] = "العملات";
@@ -8,7 +8,7 @@
 
 <div class="row d-flex justify-content-between align-items-center">
     <div class="col-xl-2">
-        <h3>العملات (@Model.Count())</h3>
+        <h3>العملات (@Model.TotalItems)</h3>
         <p>إدارة العملات</p>
     </div>
     <div class="col-xl-2">
@@ -21,7 +21,7 @@
 
 @await Html.PartialAsync("_currencyCreatePartial", new Currency())
 
-@if (Model.Count() < 1)
+@if (!Model.Items.Any())
 {
         <div class="text-center alert alert-info ">لا يوجد بيانات حاليا!</div>
 }
@@ -38,7 +38,7 @@ else
             </thead>
 
             <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Items)
             {
                         <tr>
                             <td>@item.CurrencyId</td>
@@ -51,6 +51,15 @@ else
             }
             </tbody>
         </table>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item ms-1  @(i == Model.CurrentPage ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+            }
+        </ul>
+    </nav>
 
 
 }
