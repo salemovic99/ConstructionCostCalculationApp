@@ -1,9 +1,22 @@
 ﻿@model Category
 
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="text-decoration-none">الرئيسية</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Materials" class="text-decoration-none">الفئات</a></li>
+        <li class="breadcrumb-item active" aria-current="page">تعديل فئة</li>
+
+    </ol>
+</nav>
+
 <div class="row d-flex justify-content-center align-items-center">
    <div class="col-lg-7 col-md-9 col-sm-11">
 
-        <h3>تعديل فئة </h3>
+       <div class="text-center">
+            <h3>تعديل فئة </h3>
+       </div>
         <form method="post" asp-action="Edit">
 
             <div class="mb-3">

@@ -21,6 +21,6 @@ namespace ConstructioncostcalculationDAL.Models
 
         [ForeignKey(nameof(CurrencyId))]
         public int CurrencyId { get; set; }
-        public Currency Currency { get; set; }//nav prop
+        public virtual Currency Currency { get; set; }//nav prop
     }
 }

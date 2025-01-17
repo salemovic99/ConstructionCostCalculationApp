@@ -1,0 +1,77 @@
+﻿@model MaterialEditFormViewModel
+
+
+<div class="row d-flex justify-content-center align-items-center">
+
+
+    <div class="col-lg-7 col-md-9">
+        <div class="text-center">
+            <h1 class=" fs-5 text-center">تعديل مادة</h1>
+        </div>
+
+        <form asp-action="Edit" method="post">
+            <div class="mb-3">
+                <label asp-for="MaterialId" class="form-label"></label>
+                <input type="text" asp-for="MaterialId" class="form-control"  readonly/>
+                
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="MaterialName" class="form-label"></label>
+                <input type="text" asp-for="MaterialName" class="form-control" />
+                <span asp-validation-for="MaterialName" class="text-danger"></span>
+            </div>
+
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+
+                <textarea asp-for="Description" class="form-control " style="resize:none;" cols="12" rows="5">
+
+                        </textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label asp-for="UnitPrice" class="form-label"></label>
+                    <input type="number" asp-for="UnitPrice" class="form-control" />
+                    <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                </div>
+
+
+                <div class="col-4">
+                    <label asp-for="Quantity" class="form-label"></label>
+                    <input type="number" asp-for="Quantity" class="form-control"  />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+
+                <div class="col-4">
+                    <label asp-for="CurrencyId" class="form-label"></label>
+
+                    <select asp-for="CurrencyId" asp-items="Model.Currencies" class=" form-select">
+                        <option value=""></option>
+                    </select>
+                    <span asp-validation-for="CurrencyId" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+
+            <div class="mb-3">
+                <a class="btn btn-outline-info" asp-action="Index">الغاء</a>
+                <button type="submit" class="btn btn-primary">تعديل</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

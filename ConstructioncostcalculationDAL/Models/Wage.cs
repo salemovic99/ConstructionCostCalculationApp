@@ -17,13 +17,13 @@ namespace ConstructioncostcalculationDAL.Models
 
         [ForeignKey(nameof(CategoryId))]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }//nav prop
+        public virtual Category Category { get; set; }//nav prop
 
 
 
         [ForeignKey(nameof(CurrencyId))]
         public int CurrencyId { get; set; }
-        public Currency Currency { get; set; }//nav prop
+        public virtual Currency Currency { get; set; }//nav prop
 
 
 

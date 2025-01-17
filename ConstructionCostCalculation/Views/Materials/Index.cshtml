@@ -1,24 +1,24 @@
-﻿@model List<Category>
-
-
+﻿@model IEnumerable<Material>
 @{
-    ViewData["Title"] = "الفئات";
+    ViewData["Title"] = "المواد";
 }
+
+
 
 <div class="row d-flex justify-content-between align-items-center">
     <div class="col-xl-2">
-        <h3>الفئات (@Model.Count())</h3>
-        <p>إدارة الفئات</p>
+        <h3>المواد (@Model.Count())</h3>
+        <p>إدارة المواد</p>
     </div>
     <div class="col-xl-2">
 
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#AddCATModal">
+        <a class="btn btn-dark" asp-action="Create">
             <i class="ri ri-add-line"></i>  إضافة جديد
-        </button>
+        </a>
     </div>
 </div>
 
-@await Html.PartialAsync("_categoryCreatePartial", new Category())
+
 
 @if (Model.Count() < 1)
 {
@@ -31,7 +31,12 @@ else
         <thead>
             <tr>
                 <th>Id</th>
-                <th>اسم الفئة</th>
+                <th>أسم المادة</th>
+                <th>الوصف</th>
+                <th>سعر الوحدة</th>
+                <th>الكمية</th>
+                <th>الاجمالي</th>
+                <th>العملة</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -40,11 +45,16 @@ else
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.CategoryId</td>
-                    <td>@item.CategoryName</td>
+                    <td>@item.MaterialId</td>
+                    <td>@item.MaterialName</td>
+                    <td>@item.Description</td>
+                    <td>@item.UnitPrice.ToString("C")</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Total.ToString("C")</td>
+                    <td>@item.Currency.CurrencyName</td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-outline-info">تعديل</a>
-                        <button class="delete-btn btn btn-outline-danger" data-categoryId="@item.CategoryId">حذف</button>
+                        <a asp-action="Edit" asp-route-id="@item.MaterialId" class="btn btn-outline-info">تعديل</a>
+                        <button class="delete-btn btn btn-outline-danger" data-materialid="@item.MaterialId">حذف</button>
                     </td>
                 </tr>
             }
@@ -59,7 +69,7 @@ else
 
     <partial name="_ValidationScriptsPartial" />
     <script src="~/lib/bootbox.js/bootbox.min.js"></script>
-    
+
     <script>
 
 
@@ -69,7 +79,7 @@ else
 
             $('.delete-btn').on('click', function () {
 
-                var Id = $(this).data('categoryid');
+                var Id = $(this).data('materialid');
                 var btn = $(this);
 
 
@@ -90,7 +100,7 @@ else
 
                         if (result) {
                             $.ajax({
-                                url: `/categories/delete?id=${Id}`,
+                                url: `/materials/delete?id=${Id}`,
                                 method: "DELETE",
                                 success: function () {
 
