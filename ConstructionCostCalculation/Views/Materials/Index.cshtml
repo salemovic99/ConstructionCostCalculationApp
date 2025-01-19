@@ -27,7 +27,7 @@
 else
 {
 
-    <table class="table table-hover ">
+    <table class="table table-responsive table-hover ">
         <thead>
             <tr>
                 <th>Id</th>
@@ -41,7 +41,7 @@ else
             </tr>
         </thead>
 
-        <tbody>
+        <tbody >
             @foreach (var item in Model.Items)
             {
                 <tr>
@@ -61,11 +61,11 @@ else
         </tbody>
     </table>
 
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation " class="sticky-pagination" >
         <ul class="pagination justify-content-center">
             @for (int i = 1; i <= Model.TotalPages; i++)
             {
-                <li class="page-item ms-1  @(i == Model.CurrentPage ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+                <li class="page-item ms-1  @(i == Model.CurrentPage ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i" data-pagenumber="@i">@i</a></li>
             }
         </ul>
     </nav>
@@ -84,7 +84,17 @@ else
 
         $(document).ready(function() {
 
+            // $('.page-link').on('click', function(){
+            //     var page = $(this).data('pagenumber');
+            //     $.ajax({
+            //         url: `/materials/index?page=${page}`,
+            //         method: "GET",
+            //         success: function (data) {
+            //             $('#materials').html(data);
+            //         }
+            //     });
 
+            // });
 
             $('.delete-btn').on('click', function () {
 

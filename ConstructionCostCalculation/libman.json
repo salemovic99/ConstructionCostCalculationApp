@@ -7,10 +7,6 @@
       "destination": "wwwroot/lib/bootbox.js/"
     },
     {
-      "library": "remixicon@4.6.0",
-      "destination": "wwwroot/lib/remixicon/"
-    },
-    {
       "library": "bootstrap-rtl@3.4.0",
       "destination": "wwwroot/lib/bootstrap/dist/css/bootstrap-rtl/",
       "files": [

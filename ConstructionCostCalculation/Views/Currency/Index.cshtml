@@ -28,7 +28,7 @@
 else
 {
 
-        <table class="table table-hover ">
+    <table class="table table-responsive table-hover ">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -52,7 +52,7 @@ else
             </tbody>
         </table>
 
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation" class="sticky-pagination">
         <ul class="pagination justify-content-center">
             @for (int i = 1; i <= Model.TotalPages; i++)
             {

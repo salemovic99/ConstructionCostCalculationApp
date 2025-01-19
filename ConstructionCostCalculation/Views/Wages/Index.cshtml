@@ -1,24 +1,24 @@
-﻿@model PaginatedList<Category>
+﻿@model PaginatedList<Wage>
 
 
 @{
-    ViewData["Title"] = "الفئات";
+    ViewData["Title"] = "الاجور";
 }
 
 <div class="row d-flex justify-content-between align-items-center">
     <div class="col-xl-2">
-        <h3>الفئات (@Model.TotalItems)</h3>
-        <p>إدارة الفئات</p>
+        <h3>الاجور (@Model.TotalItems)</h3>
+        <p>إدارة الاجور</p>
     </div>
     <div class="col-xl-2">
 
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#AddCATModal">
+        <a asp-action="Create" class="btn btn-dark" >
             <i class="ri ri-add-line"></i>  إضافة جديد
-        </button>
+        </a>
     </div>
 </div>
 
-@await Html.PartialAsync("_categoryCreatePartial", new Category())
+
 
 @if (!Model.Items.Any())
 {
@@ -31,7 +31,13 @@ else
         <thead>
             <tr>
                 <th>Id</th>
-                <th>اسم الفئة</th>
+                <th>اسم العامل</th>
+                <th> الوصف</th>
+                <th> المبلغ</th>
+                <th> رقم الفاتورة</th>
+                <th> التاريخ</th>
+                <th> الغرض</th>
+                <th> العملة</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -40,11 +46,17 @@ else
             @foreach (var item in Model.Items)
             {
                 <tr>
-                    <td>@item.CategoryId</td>
-                    <td>@item.CategoryName</td>
+                    <td>@item.WageId</td>
+                    <td>@item.WorkerName</td>
+                    <td>@item.Description</td>
+                    <td>@item.Amount.ToString("C")</td>
+                    <td>@item.InvoiceNumber</td>
+                    <td>@item.Date</td>
+                    <td>@item.Category.CategoryName</td>
+                    <td>@item.Currency.CurrencyName</td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-outline-info">تعديل</a>
-                        <button class="delete-btn btn btn-outline-danger" data-categoryId="@item.CategoryId">حذف</button>
+                        <a asp-action="Edit" asp-route-id="@item.WageId" class="btn btn-outline-info">تعديل</a>
+                        <button class="delete-btn btn btn-outline-danger" data-wageid="@item.WageId">حذف</button>
                     </td>
                 </tr>
             }
@@ -70,7 +82,7 @@ else
 
     <partial name="_ValidationScriptsPartial" />
     <script src="~/lib/bootbox.js/bootbox.min.js"></script>
-    
+
     <script>
 
 
@@ -80,7 +92,7 @@ else
 
             $('.delete-btn').on('click', function () {
 
-                var Id = $(this).data('categoryid');
+                var Id = $(this).data('wageid');
                 var btn = $(this);
 
 
@@ -101,7 +113,7 @@ else
 
                         if (result) {
                             $.ajax({
-                                url: `/categories/delete?id=${Id}`,
+                                url: `/wages/delete?id=${Id}`,
                                 method: "DELETE",
                                 success: function () {
 

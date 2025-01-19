@@ -30,3 +30,15 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+
+.sticky-pagination {
+    position: fixed; /* Fix the pagination to the bottom */
+    bottom: 110px; /* Position it at the bottom of the viewport */
+    left: 0; /* Align it with the left edge of the screen */
+    width: 100%; /* Make it span the full width */
+    z-index: 1000; /* Ensure it appears above other elements */
+  
+    padding: 10px 0; /* Add some padding for spacing */
+    
+}

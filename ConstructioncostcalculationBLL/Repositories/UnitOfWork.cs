@@ -8,9 +8,9 @@ namespace ConstructioncostcalculationBLL.Repositories
 
         private readonly ApplicationDbContext context;
 
-        public IBaseRepository<Wage> WagesRepository { get; private set; }
+        public WagesRepository WagesRepository { get; private set; }
 
-        public IBaseRepository<Material> MaterialsRepository { get; private set; }
+        public MaterialsRepository MaterialsRepository { get; private set; }
 
         public IBaseRepository<Currency> CurrenciesRepository { get; private set; }
 
@@ -18,8 +18,8 @@ namespace ConstructioncostcalculationBLL.Repositories
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
-            WagesRepository = new BaseRepository<Wage>(context);
-            MaterialsRepository = new BaseRepository<Material>(context);
+            WagesRepository = new WagesRepository(context);
+            MaterialsRepository = new MaterialsRepository(context);
             CurrenciesRepository = new BaseRepository<Currency>(context);
             CategoriesRepository = new BaseRepository<Category>(context);
 

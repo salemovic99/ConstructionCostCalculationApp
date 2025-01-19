@@ -1,0 +1,100 @@
+﻿@model WageEditFormViewModel
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" class="text-decoration-none">الرئيسية</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Wages" class="text-decoration-none">الاجور</a></li>
+        <li class="breadcrumb-item active" aria-current="page">تعديل أجر</li>
+
+    </ol>
+</nav>
+
+<div class="row d-flex justify-content-center align-items-center">
+
+
+    <div class="col-lg-7 col-md-9">
+        <div class="text-center">
+            <h1 class=" fs-5 text-center">تعديل أجر</h1>
+        </div>
+
+        <form asp-action="Edit" method="post">
+
+            <div class="mb-3">
+                <label asp-for="WageId" class="form-label"></label>
+                <input type="text" asp-for="WageId" class="form-control" readonly />
+                <span asp-validation-for="WageId" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="WorkerName" class="form-label"></label>
+                <input type="text" asp-for="WorkerName" class="form-control" />
+                <span asp-validation-for="WorkerName" class="text-danger"></span>
+            </div>
+
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+
+                <textarea asp-for="Description" class="form-control " style="resize:none;" cols="12" rows="5">
+
+                        </textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label asp-for="Amount" class="form-label"></label>
+                    <input type="number" asp-for="Amount" class="form-control"  />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+
+
+                <div class="col-6">
+                    <label asp-for="InvoiceNumber" class="form-label"></label>
+                    <input type="number" asp-for="InvoiceNumber" class="form-control" />
+                    <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
+                </div>
+
+
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label asp-for="CurrencyId" class="form-label"></label>
+
+                    <select asp-for="CurrencyId" asp-items="Model.Currencies" class=" form-select">
+                        <option value=""></option>
+                    </select>
+                    <span asp-validation-for="CurrencyId" class="text-danger"></span>
+                </div>
+
+                <div class="col-6">
+                    <label asp-for="CategoryId" class="form-label"></label>
+
+                    <select asp-for="CategoryId" asp-items="Model.Categories" class=" form-select">
+                        <option value=""></option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+
+            <div class="mb-3">
+                <a class="btn btn-outline-info" asp-action="Index">الغاء</a>
+                <button type="submit" class="btn btn-primary">اضافة</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
